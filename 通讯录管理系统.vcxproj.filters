@@ -18,5 +18,13 @@
     <ClCompile Include="通讯录管理系统.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="子函数.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="子函数.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

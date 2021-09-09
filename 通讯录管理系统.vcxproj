@@ -138,7 +138,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="子函数.cpp" />
     <ClCompile Include="通讯录管理系统.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="子函数.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
