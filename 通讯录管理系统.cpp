@@ -62,6 +62,102 @@ void addperson(addressbook* abs)
 	}
 }
 
+//显示联系人
+void showperson(addressbook* abs)
+{
+	if (abs->m_size == 0)
+	{
+		cout << "通讯录中暂时无人，无法显示！" << endl;
+	}
+	else
+	{
+		cout << "姓名" << "\t" << "性别" << "\t" << "年龄" <<
+			"\t" << "电话号码" << "\t" << "地址" << endl;
+		for (int i = 0;i <= abs->m_size-1;i++)
+		{
+			//显示具体联系人
+			cout << abs->personArray[i].name << "\t"
+				<< abs->personArray[i].sex << "\t"
+				<< abs->personArray[i].age << "\t"
+				<< abs->personArray[i].number << "\t"
+				<< abs->personArray[i].addr << endl;
+		}
+	}
+	system("pause");
+	system("cls");
+}
+
+//显示联系人是否存在，如果存在返回数组中的具体位置，不存在返回-1
+
+int searchperson(addressbook* abs, string name)
+{
+	for (int i = 0;i < abs->m_size;i++)
+	{
+		//找到用户输入的姓名了
+		if (abs->personArray[i].name == name)
+		{
+			return i;//找到了人名
+		}
+	}
+	return -1;
+}
+
+//删除联系人
+void seleteperson(addressbook* abs)
+{
+	cout << "请输入您要删除的联系人" << endl;
+	string name;
+	cin >> name;
+	//找到联系人
+	int ret = searchperson(abs, name);//此处abs不需要指针寻址符，因为函数内的abs就是地址符
+	if (ret != -1)
+	{
+		//删除联系人
+		//要删除李四，即将李四后的人员前移，并将记录的人员个数-1即可
+		for (int i = ret;i < abs->m_size;i++)
+		{
+			//数据前移操作
+			abs->personArray[i] = abs->personArray[i + 1];
+		}
+		abs->m_size--;
+		cout << "删除成功" << endl;
+	}
+	else
+	{
+		cout << "查无此人" << endl;
+	}
+	system("pause");
+	system("cls");
+}
+
+//查找联系人
+void findperson(addressbook* abs)
+{
+	cout << "请输入您要查找的联系人" << endl;
+	string name;
+	cin >> name;
+	//找到联系人
+	int ret = searchperson(abs, name);
+	if (ret != -1)
+	{
+		//查找联系人并显示
+		cout << "您要查找的联系人如下：" << endl;
+		cout << "姓名" << "\t" << "性别" << "\t" << "年龄" <<
+			"\t" << "电话号码" << "\t" << "地址" << endl;
+		cout << abs->personArray[ret].name << "\t"
+			<< abs->personArray[ret].sex << "\t"
+			<< abs->personArray[ret].age << "\t"
+			<< abs->personArray[ret].number << "\t"
+			<< abs->personArray[ret].addr << endl;
+	}
+	else
+	{
+		cout << "查无此人" << endl;
+	}
+	system("pause");
+	system("cls");
+}
+
 int main()
 {
 	//创建通讯录结构体变量
@@ -81,10 +177,23 @@ int main()
 			addperson(&abs);//利用地址传递可以修饰实参
 			break;
 		case 2: //2、显示联系人
+			showperson(&abs);
 			break;
 		case 3: //3、删除联系人
+		//用{}将代码包住表示只有一个代码行
+		//{
+		//	cout << "请输入删除联系人姓名" << endl;
+		//	string name;
+		//	cin >> name;
+		//	if (searchperson(&abs, name))
+		//	{
+		//		cout << "没找到" << endl;
+		//	}
+		//}
+			seleteperson(&abs);
 			break;
 		case 4: //4、查找联系人
+			findperson(&abs);
 			break;
 		case 5: //5、修改联系人
 			break;
