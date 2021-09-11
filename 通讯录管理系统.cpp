@@ -158,6 +158,45 @@ void findperson(addressbook* abs)
 	system("cls");
 }
 
+//修改联系人
+void changeperson(addressbook* abs)
+{
+	cout << "请输入你要修改的联系人" << endl;
+	string name;
+	cin >> name;
+	int ret = searchperson(abs, name);
+	if (ret != -1)
+	{
+		cout << "查找到此人，请重新输入信息" << endl;
+		//重新输入联系人
+		cout << "请输入姓名" << endl;
+		cin >> abs->personArray[ret].name;
+		cout << "请输入性别" << endl;
+		cin >> abs->personArray[ret].sex;
+		cout << "请输入年龄" << endl;
+		cin >> abs->personArray[ret].age;
+		cout << "请输入电话号码" << endl;
+		cin >> abs->personArray[ret].number;
+		cout << "请输入地址" << endl;
+		cin >> abs->personArray[ret].addr;
+		cout << "修改成功" << endl;
+	}
+	else
+	{
+		cout << "查无此人" << endl;
+	}
+	system("pause");
+	system("cls");
+}
+
+void clcperson(addressbook* abs)
+{
+	abs->m_size = 0;
+	cout << "清空成功" << endl;
+	system("pause");
+	system("cls");
+}
+
 int main()
 {
 	//创建通讯录结构体变量
@@ -196,8 +235,10 @@ int main()
 			findperson(&abs);
 			break;
 		case 5: //5、修改联系人
+			changeperson(&abs);
 			break;
 		case 6: //6、清空联系人
+			clcperson(&abs);
 			break;
 		case 0: //0、推出通讯录
 			cout << "欢迎下次使用" << endl;
